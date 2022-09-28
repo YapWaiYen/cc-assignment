@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Yiso | Employee</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<!-- support v4 icon references/syntax -->
+<link href="{{url_for('static', filename='fontawesome-free/css/all.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='fontawesome-free/css/v4-shims.css')}}" rel="stylesheet">
+
+<style type="text/css">
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+}
+.topnav ::after{
+  overflow: hidden;
+  background-color: rgb(0, 0, 0);
+  padding: 10px;
+}
+.topnav-centered img {
+  float: none;
+  position: absolute;
+  object-fit:contain;
+  top: 7%;
+  left: 50%;
+  width:150px;
+  height:250px;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: darken;
+}
+
+.topnav a:hover {
+  color: rgb(96, 95, 95);
+  border-bottom: 3px solid rgb(21, 0, 255);
+}
+
+.topnav a.active {
+  border-bottom: 3px solid rgb(0, 0, 0);
+}
+
+.topnav-left a{
+  float:left;
+  padding-left: 30px;
+  color: #000000;
+  text-align: center;
+  justify-content: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav-right a {
+  float: right;
+  padding-left: 30px;
+  color: #000000;
+  text-align: center;
+  justify-content: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+}
+
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
+
+.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+#myTable {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #c9e8ff;
+}
+
+.myTable th {
+  text-align: left;
+  padding: 16px;
+  background-color: #4279b425;
+  border: 1.5px solid #f2f9ff;
+}
+
+.myTable td {
+  text-align: left;
+  background-color: #dfebf925;
+  padding: 16px;
+  border: 1px solid #cfe9ff;
+}
+
+.table-container{
+ padding:0 30px;
+}
+
+.btn-success {
+  margin-top: 10px;  
+  color: #fff;
+  background-color: #112e8d;
+  border-color: #112e8d;
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.btn-search {
+  margin-top: 10px;
+  color: rgb(0, 0, 0);
+  background-image: url('../img/icons/search.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  z-index: -1;
+  border:2px solid #afafaf;
+  padding:10px 20px 5px 35px;
+  text-decoration: none;
+  border-radius: 8px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+.btn-search:hover {
+  width: 50%;
+}
+
+
+</style>
+</head>
+<body>
+  <div class="topnav">
+    <div class="topnav-left">
+      <a href="#home" onclick="openNav()"><i class="fa-solid fa-bars" style="font-size: 25px;"></i></a>
+      <a href="#dark" onclick="myFunction()"><i class="fa-regular fa-moon"></i></a>
+    </div>
+  
+        <div class="topnav-centered">
+          <img src="{{url_for('static', filename = 'img/logo-resized.png')}}">
+        </div>
+
+        <div class="topnav-right">
+          <a href="/payroll">Payroll</a>
+          <a href="/attendance" >Attendance</a>
+          <a href="/employee" class="active">Employee</a>
+          <a href="/home" >Home</a>
+        </div>
+
+        <div id="myNav" class="overlay">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">
+              <a href="/about">About</a>
+              <a href="/faq">FAQ</a>
+              <a href="/progress">History</a>
+            </div>
+        </div>
+  </div>
+  <!----------Body----------->
+  <div class="table-container">
+    <table id="myTable" class="myTable">
+      <p style="float: right"><a href="/" class="btn btn-success"><i class="fas fa-user-plus">&nbsp;&nbsp;</i>Add New Employee</a></p>
+        <tr>
+          <th onclick="sortNumber(0)">ID<i class="fa-solid fa-arrow-down-1-9" id="num" style="float:right;"></i></th>
+          <th onclick="sortTable(1)">First name<i class="fa-solid fa-arrow-up-wide-short" id="alpha" style="float:right;"></i></th>
+          <th onclick="sortTable(2)">Last name<i class="fa-solid fa-arrow-up-wide-short" id="alpha" style="float:right;"></i></th>
+          <th onclick="sortTable(3)">Education <i class="fa-solid fa-arrow-up-wide-short" id="alpha" style="float:right;"></i></th>
+          <th onclick="sortTable(4)">Location <i class="fa-solid fa-arrow-up-wide-short" id="alpha" style="float:right;"></i></th>
+        </tr>
+        {% for row in data %} 
+        <tr>
+          <td >{{row[0]}}</td>
+          <td>{{row[1]}}</td>
+          <td>{{row[2]}}</td> 
+          <td>{{row[3]}}</td>
+          <td>{{row[4]}}</td>       
+        </tr>
+        {% endfor %} 
+    </table>
+  </div>
+
+
+    <!----------Footer----------->
+    <div class="footer">
+        <p>© Copyright 2022 Yiso Solution & System - All Rights Reserved</p>
+    </div>
+    
+    <!----------Script----------->
+    <script>
+        function openNav() {
+          document.getElementById("myNav").style.width = "100%";
+        }
+        
+        function closeNav() {
+          document.getElementById("myNav").style.width = "0%";
+        }
+        function myFunction() {
+           var element = document.body;
+            element.classList.toggle("dark-mode");
+        }
+
+        function sortTable(n) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("myTable");
+            icon = document.getElementById("alpha");
+            switching = true;
+             
+            // Set the sorting direction to ascending:
+            dir = "asc";
+            
+            /* Make a loop that will continue until no switching has been done: */
+            while (switching) {
+
+            // Start by saying: no switching is done:
+                switching = false;
+                rows = table.rows;
+
+                /* Loop through all table rows (except the first, which contains table headers): */
+                for (i = 1; i < (rows.length - 1); i++) {
+
+                  // Start by saying there should be no switching:
+                  shouldSwitch = false;
+
+                  /* Get the two elements you want to compare,one from current row and one from the next: */
+                  x = rows[i].getElementsByTagName("TD")[n];
+                  y = rows[i + 1].getElementsByTagName("TD")[n];
+
+                  /* Check if the two rows should switch place,based on the direction, asc or desc: */
+                  if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                      // If so, mark as a switch and break the loop:
+                      shouldSwitch = true;
+                      icon.className="fa-solid fa-arrow-down-wide-short";
+                      break;
+                    }
+                  } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                      // If so, mark as a switch and break the loop:
+                      shouldSwitch = true;
+                      icon.className="fa-solid fa-arrow-up-wide-short";
+                      break;
+                    }
+                  }
+                }
+
+                if (shouldSwitch) {
+                  /* If a switch has been marked, make the switch and mark that a switch has been done: */
+                  rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                  switching = true;
+                  // Each time a switch is done, increase this count by 1:
+                  switchcount ++;
+                } else {
+                  /* If no switching has been done AND the direction is "asc",set the direction to "desc" and run the while loop again. */
+                  if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                  }
+                }
+            }
+        }
+
+        function sortNumber(n) {
+            var table, rows, switching, i,dir, x, y, shouldSwitch,switchcount = 0;;
+            table = document.getElementById("myTable");
+            var sort=document.getElementById("num");
+            switching = true;
+            dir = "asc";
+ 
+             while (switching) {
+                switching = false;
+                rows = table.rows;
+                   for (i = 1; i < (rows.length - 1); i++) {
+                     shouldSwitch = false;
+                     x = rows[i].getElementsByTagName("TD")[n];
+                     y = rows[i + 1].getElementsByTagName("TD")[n];
+    
+                      if (dir == "asc") {
+                        if (Number(x.innerHTML) > Number(y.innerHTML)) {
+                            sort.className="fa-solid fa-arrow-down-1-9";
+                            shouldSwitch = true;
+                            break;
+                        }
+                       }else if (dir == "desc") {
+                        if (Number(x.innerHTML) < Number(y.innerHTML)) {
+                             shouldSwitch = true;
+                            sort.className="fa-solid fa-arrow-down-9-1";
+                            break;
+                        }
+                      }
+                    }
+
+                if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switchcount ++;
+                switching = true;
+                }else {
+                 if (switchcount == 0 && dir == "asc") {
+                     dir = "desc";
+                    switching = true;
+                 }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

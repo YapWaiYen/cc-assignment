@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Yiso | Employee Attendance</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<!-- support v4 icon references/syntax -->
+<link href="{{url_for('static', filename='fontawesome-free/css/all.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='fontawesome-free/css/v4-shims.css')}}" rel="stylesheet">
+
+<style type="text/css">
+
+* {
+  box-sizing: border-box;
+
+}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+}
+.topnav ::after{
+  overflow: hidden;
+  background-color: rgb(0, 0, 0);
+  padding: 10px;
+}
+.topnav-centered img {
+    float: none;
+  position: absolute;
+  object-fit:contain;
+  top: 7%;
+  left: 50%;
+  width:150px;
+  height:250px;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: darken;
+}
+
+.topnav a:hover {
+  color: rgb(96, 95, 95);
+  border-bottom: 3px solid rgb(21, 0, 255);
+}
+
+.topnav a.active {
+  border-bottom: 3px solid rgb(0, 0, 0);
+}
+
+.topnav-left a{
+  float:left;
+  padding-left: 30px;
+  color: #000000;
+  text-align: center;
+  justify-content: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav-right a {
+  float: right;
+  padding-left: 30px;
+  color: #000000;
+  text-align: center;
+  justify-content: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+}
+
+.footer {
+
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
+
+.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+.inputTp {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+
+}
+
+.inner_head{
+    position: relative;
+  border: 2px solid black;
+  float:inline-end;
+}
+.labelTp {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+#save {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#save:hover {
+  background-color: #45a049;
+  margin: auto; 
+}
+
+.sub{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: rgb(26 119 0 / 15%);
+  padding: 30px 3px 0px 30px;
+  margin: 150px;
+  margin-top: 50px;
+}
+
+.col-25 img {
+  float: left;
+  width: 40%;
+  margin-top: 6px;
+  z-index: -1;
+}
+
+.col-75 {
+  float:right ;
+  width: 40%;
+  height:60% ;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  margin: 80px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, .save {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+.row p{
+  text-align: center;
+  font-size: larger;
+  font-style: italic;
+}
+
+
+#reset,#Calculate{
+  height: 50px;
+  margin-left: 30px;
+  width: 100px;
+  border-radius: 5px;
+  border: medium inset #98e7a9c9;
+  background-color: rgb(0 239 106 / 18%);
+  color: #5e5555;
+}
+ 
+#download {
+  border:medium inset #8C8C8C;
+  background-color: white; 
+  padding:20px;
+  font-size:small;
+  width:250px;
+  color:black;
+}
+
+#download:hover,#reset:hover{
+  color:black;
+  background-color: rgba(0, 255, 136, 0.582);
+  border:medium outset #98e7a9c9;
+}
+
+#Calculate:hover{
+  color:white;
+  background-color:rgb(83, 163, 116);
+  border:medium outset #98e7a9c9;
+}
+
+
+</style>
+</head>
+<body>
+  <div class="topnav">
+    <div class="topnav-left">
+      <a href="#home" onclick="openNav()"><i class="fa-solid fa-bars" style="font-size: 25px;"></i></a>
+      <a href="#dark" onclick="myFunction()"><i class="fa-regular fa-moon"></i></a>
+    </div>
+  
+        <div class="topnav-centered">
+          <img src="{{url_for('static', filename = 'img/logo-resized.png')}}">
+        </div>
+
+        <div class="topnav-right">
+          <a href="/payroll">Payroll</a>
+          <a href="/attendance" class="active">Attendance</a>
+          <a href="/employee" >Employee</a>
+          <a href="/home" >Home</a>
+        </div>
+
+        <div id="myNav" class="overlay">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">
+              <a href="/about">About</a>
+              <a href="/faq">FAQ</a>
+              <a href="/progress">History</a>
+            </div>
+        </div>
+  </div>
+  <!----------Body----------->
+  <div class="container">
+  <div class="edit-left" style="float:left;">
+    
+</div>
+      <form action="/attendance/CheckOut" autocomplete="on" method = "POST" enctype="multipart/form-data">
+        <span onclick="location = '/home'" class="w3-button w3-gray w3-xlarge w3-hover-red " style="float: right;font-weight: bold;font-size: x-large; " title="Close Modal">×</span>
+
+        <div class="col-25">
+            <img src="{{url_for('static', filename = 'img/check.gif')}}" >
+          </div>
+      <div class="row">
+        <p> Please enter your employee id :</p><br/>
+      <div class="col-75">
+        <input type="text" id="name" name="emp_id" class="inputTp">
+      </div>
+
+        <div class="col-75">
+        <div class="sub">
+            <button type="submit" value="Check In" formaction="/attendance/CheckIn "id="reset">Check In</button>
+                <a hre="/attendance/CheckOut"></a>
+            <button type="submit" value="Check out" id="Calculate">Check Out</button>
+          </div>
+        </div>
+    </div>
+    <br>
+
+    
+    </form>
+  </div>
+
+
+    <!----------Footer----------->
+    <div class="footer">
+      <p>© Copyright 2022 Yiso Solution & System - All Rights Reserved</p>
+    </div>
+
+  <!----------Script----------->
+    <script>
+      function openNav() {
+        document.getElementById("myNav").style.width = "100%";
+      }
+      
+      function closeNav() {
+        document.getElementById("myNav").style.width = "0%";
+      }
+      function myFunction() {
+         var element = document.body;
+          element.classList.toggle("dark-mode");
+      }
+      </script>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+customhost = "dbinstance.ct6g3vvuvlxw.us-east-1.rds.amazonaws.com"
+customuser = "cloud"
+custompass = "12345678"
+customdb = "employee"
+custombucket = "yukigoay-employee"
+customregion = "us-east-1a"

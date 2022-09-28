@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Yiso | Faq</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<!-- support v4 icon references/syntax -->
+<link href="{{url_for('static', filename='fontawesome-free/css/all.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='fontawesome-free/css/v4-shims.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<style type="text/css">
+body {
+  background-color: #F2F7FF;
+  margin: 0;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+}
+.topnav ::after{
+  overflow: hidden;
+  background-color: rgb(0, 0, 0);
+  padding: 10px;
+}
+.topnav-centered img {
+  float: none;
+  position: absolute;
+  object-fit:contain;
+  top: 7%;
+  left: 50%;
+  width:150px;
+  height:250px;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: darken;
+}
+
+.topnav a:hover {
+  color: rgb(96, 95, 95);
+  border-bottom: 3px solid rgb(21, 0, 255);
+}
+
+.topnav a.active {
+  border-bottom: 3px solid rgb(0, 0, 0);
+}
+
+.topnav-left a{
+  float:left;
+  padding-left: 30px;
+  color: #000000;
+  text-align: center;
+  justify-content: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav-right a {
+  float: right;
+  padding-left: 30px;
+  color: #000000;
+  text-align: center;
+  justify-content: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+}
+
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
+
+.dark-mode {
+  background-color: black;
+  color: white;
+}
+#email,#location,#contact{
+  font-size: 50px;
+}
+.card p,h3{
+    text-decoration-style: none;
+    color: black;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 29%;
+  padding: 0 20px;
+  align-items: center;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+  margin: -5px 100px;
+  padding-left:10px ;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.row-col-card{
+  margin-top: 20px;
+  padding: 20px;
+  box-shadow: inset;
+  justify-content: center;
+}
+
+.up-row-col-card{
+  padding: 50px;
+  content: unset;
+  text-align: left;
+  color: #000000;
+  background-color: rgb(211, 229, 240);
+  column-count:3;
+  column-rule: 3px solid;
+  column-rule-color: rgb(0, 33, 142);
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+    margin-right: 70px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0px 10px 30px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  border-radius: 12px;
+  margin-bottom: 30px;
+
+}
+
+.wholefaq .w3-container{
+  margin: 0px auto;     
+  width: 800px;
+}
+
+.wholefaq button{
+  margin: 20px;
+  text-align: center;
+}
+
+.pay,.term,.delivery{
+  background-color: #cfe5f9;
+  border: 2px dotted #b5bcde;
+  text-align: center;
+  padding: 20px;
+}
+
+.pay:hover,.term:hover,.delivery:hover{
+  background-color: #b5bcde;
+  color: black;
+}
+
+.wholefaq i{
+  font-size: 25px;
+  color: rgb(116, 202, 255);
+  margin-right: 10px;
+}
+/*tab*/
+.tab {
+  overflow: hidden;
+  border: 0.1px solid rgb(229, 227, 227);
+  background-color: white;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: rgb(209, 236, 249);
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+/*timeline*/
+
+/* The actual timeline (the vertical ruler) */
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 30px;
+  z-index: -1;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: rgb(0, 0, 0);
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  left: 50%;
+  margin-left: -1px;
+}
+
+/* Container around content */
+.container {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+}
+
+/* The circles on the timeline */
+.container::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -15px;
+  background-color: white;
+  border: 4px solid #003f97;
+  top: 15px;
+  border-radius: 50%;
+}
+
+/* Place the container to the left */
+.left {
+  left: 0;
+}
+
+/* Place the container to the right */
+.right {
+  left: 50%;
+}
+
+/* Add arrows to the left container (pointing right) */
+.left::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  right: 30px;
+  border: medium solid rgb(193, 227, 254);
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent rgb(193, 227, 254);
+}
+
+/* Add arrows to the right container (pointing left) */
+.right::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  left: 30px;
+  border: medium solid  #e7f0fd ;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent rgb(193, 227, 254) transparent transparent;
+}
+
+/* Fix the circle for containers on the right side */
+.right::after {
+  left: -10px;
+}
+
+/* The actual content */
+.content {
+  padding: 20px 30px;
+  background-image:  linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+  position: relative;
+  border-radius: 6px;
+}
+
+/* Media queries - Responsive timeline on screens less than 600px wide */
+@media screen and (max-width: 600px) {
+  /* Place the timelime to the left */
+  .timeline::after {
+  left: 31px;
+  }
+  
+  /* Full-width containers */
+  .container {
+  width: 100%;
+  padding-left: 70px;
+  padding-right: 25px;
+  }
+  
+  /* Make sure that all arrows are pointing leftwards */
+  .container::before {
+  left: 60px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+  }
+
+  /* Make sure all circles are at the same spot */
+  .left::after, .right::after {
+  left: 15px;
+  }
+  
+  /* Make all right containers behave like the left ones */
+  .right {
+  left: 0%;
+  }
+}
+
+</style>
+</head>
+<body>
+  <div class="topnav">
+    <div class="topnav-left">
+      <a href="#home" onclick="openNav()"><i class="fa-solid fa-bars" style="font-size: 25px;"></i></a>
+      <a href="#dark" onclick="myFunction()"><i class="fa-regular fa-moon"></i></a>
+    </div>
+  
+        <div class="topnav-centered">
+          <img src="{{url_for('static', filename = 'img/logo-resized.png')}}" id="logo" >
+        </div>
+
+        <div class="topnav-right">
+          <a href="/payroll">Payroll</a>
+          <a href="/attendance" >Attendance</a>
+          <a href="/employee" >Employee</a>
+          <a href="/home" >Home</a>
+        </div>
+
+        <div id="myNav" class="overlay">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">
+                <a href="/about">About</a>
+                <a href="/faq">FAQ</a>
+                <a href="/progress">History</a>
+            </div>
+        </div>
+  </div>
+  <!----------Body----------->
+  <div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'aboutus')">About Us</button>
+    <button class="tablinks active" onclick="openCity(event, 'faq')">FAQ</button>
+    <button class="tablinks" onclick="openCity(event, 'history')">History</button>
+  </div>
+  <div class="tabcontent" id="aboutus" style="display:none">
+    <div>
+      <img src="{{url_for('static', filename = 'img/about.png')}}" style="width:40%;display: block;margin-left:auto;margin-right:auto;margin-top: 10px;margin-bottom: 20px;">
+    </div>
+        <div class="up-row-col-card">
+          <h2><p>About Company</p></h2>
+          <p>YISO Solution & System is sofware and system support company.
+          </p>
+          <p>Three buddies who were both practical mathematicians and dreamers at heart founded it in 2007. They wanted to contribute to society by utilising their love of science and software. </p>
+          <p>
+            With the creation of software for horizontal drilling, Yiso made its debut on the EU software market. It calculates the drilling route using mathematical modelling, and it continuously regulates the drilling operation.
+          </p><p> 
+            We are still key partners today, 13 years and hundreds of successful releases later.In parallel, Yiso forged a collaboration with Lausanne University in Switzerland. Then came more difficult but rewarding projects, such the aeroplane self-testing system and the compression behaviour modelling of solid foam.
+            </p>
+        </div>
+  
+          <!----------card----------->
+          <div class="row-col-card" >
+              <div class="row">
+                <div class="column" >
+                  <div class="card">
+                    <i class="fa-regular fa-envelope" id="email"></i>
+                    <h3>Email</h3>
+                    <p>yis3rds@gmail.com</p>
+                  </div></a>
+                </div>
+                
+                <div class="column">
+                  <div class="card">
+                    <i class="fa-solid fa-location-dot" id="location"></i>
+                    <h3>Location</h3>
+                    <p>16,West Caroline 8292 Melborn Street 9 </p>
+                  </div>
+                </div>
+                
+                <div class="column">
+                  <div class="card">
+                    <i class="fa-regular fa-address-book" id="contact"></i>
+                    <h3>Contact</h3>
+                    <p>+(60)13-1728316</p>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+  
+  <div class="tabcontent" id="faq" style="display:block">
+  <div class="wholefaq">
+    <div class="w3-container">
+      <button onclick="myFunction('ans1'); change('e1')"  class="w3-button w3-block w3-pale-blue w3-left-align" title="Click Me To See Answer"><i class="fa-solid fa-square-caret-down" id="e1"></i> How do I track my return status?</button>
+      <div id="ans1" class="w3-hide w3-container">
+          <p>You can track return status using the tracking number provided to you by your logistic partner</p>
+      </div>
+
+      <button onclick="myFunction('ans2'); change('e2')" class="w3-button w3-block w3-pale-blue w3-left-align" title="Click Me To See Answer" ><i class="fa-solid fa-square-caret-down" id="e2"></i> How do I know if replacement has been processed?</button>
+      <div id="ans2" class="w3-hide w3-container">
+          <p>You will receive an email notification stating that we are now processing the replacement for your order. You will also be givena new order number.</p>
+      </div>
+  
+      <button onclick="myFunction('ans3'); change('e3')" class="w3-button w3-block w3-pale-blue w3-left-align" title="Click Me To See Answer"><i class="fa-solid fa-square-caret-down" id="e3"></i>  Do you guys have a physical store?</button>
+      <div id="ans3" class="w3-hide w3-container ">
+          <p>Sorry ,currently we do not have any physical store yet but only an office for self-pick upp>
+      </div>
+
+      <button onclick="myFunction('ans4'); change('e4')" class="w3-button w3-block w3-pale-blue w3-left-align" title="Click Me To See Answer"><i class="fa-solid fa-square-caret-down" id="e4"></i> Do you have a software support team?</button>
+      <div id="ans4" class="w3-hide w3-container">
+          <p> Yes, we do have a team who handles system support. Kindly email to us your enquiries at hi@bullandrabbit.com.my</p>
+      </div>    
+
+      <button onclick="myFunction('ans5'); change('e5')" class="w3-button w3-block w3-pale-blue w3-left-align" title="Click Me To See Answer"><i class="fa-solid fa-square-caret-down" id="e5"></i>  How long is the quality evaluation process</button>
+      <div id="ans5" class="w3-hide w3-container">
+          <p>Replacement/ Refund process only begins after we have completed evaluating your returned product.
+              This quality evaluation process may last up to 2 business days.<br />
+              You will receive the credit including return courier charges within 5-15 working days, depending on your bank policies</p>
+      </div>
+  
+      <button onclick="myFunction('ans6'); change('e6')" class="w3-button w3-block w3-pale-blue w3-left-align" title="Click Me To See Answer"><i class="fa-solid fa-square-caret-down"  id="e6"></i> Can I return an item after 7~14 days upon receipt</button>
+      <div id="ans6" class="w3-hide w3-container">
+          <p>Your item cannot be returned after 7 days for items</p>
+      </div>          
+          
+      <button onclick="myFunction('ans7'); change('e7')" class="w3-button w3-block w3-pale-blue w3-left-align" title="Click Me To See Answer"><i class="fa-solid fa-square-caret-down"  id="e7"></i>  Can I add gift card message for my order?</button>
+      <div id="ans7" class="w3-hide w3-container">
+          <p>Yes, always welcome. You are allowed to have max. 200 characters in the gift card, Once, it is done just add to cart</p>
+      </div>
+      
+      <button onclick="myFunction('ans8'); change('e8')" class="w3-button w3-block w3-pale-blue w3-left-align" title="Click Me To See Answer"><i class="fa-solid fa-square-caret-down"  id="e8"></i>  Timelead for implement New System ?</button>
+      <div id="ans8" class="w3-hide w3-container">
+          <p>We need at least 3 months, any urgent enquiries please whatapps to us at 018 2070 689</p>
+      </div>       
+    </div> 
+  </div>
+</div>
+
+<div class="tabcontent" id="history" style="display:none">         
+  <div class="timeline">
+      <div class="container left">
+        <div class="content">
+          <h2>2017</h2>
+          <p>In conjunction with a €2.6 billion German public business, Yiso Solution & System has established the Artificial Intelligence & Advanced Analytics Lab. Along with 200+ software specialists who completed 250+ projects for 150+ pleased clients, Yiso also celebrated its ten-year anniversary.
+             </p>
+          </div>
+      </div>
+      <div class="container right">
+        <div class="content">
+          <h2>2016</h2>
+          <p>For Yiso System, this year was a fresh start. The business made the decision to change its emphasis to the development of software for computer vision and data science.</p>
+        </div>
+      </div>
+      <div class="container left">
+        <div class="content">
+          <h2>2015</h2>
+          <p>For Yiso Solution & System , this year was a fresh start. The business made the decision to change its emphasis to the development of software for computer vision and data science.</p>
+        </div>
+      </div>
+      <div class="container right">
+        <div class="content">
+          <h2>2012</h2>
+          <p>Yiso joins the energy and healthcare industries. We created a variety of intricate EMR and EHR solutions for healthcare providers in the USA, energy efficiency management software for the EU electricity provider, and an unique Microsoft SharePoint business add-in suite for our Swiss Customer.</p>
+        </div>
+      </div>
+      <div class="container left">
+        <div class="content">
+          <h2>2011</h2>
+          <p>Yiso will begin to place greater emphasis on Microsoft technology in 2010. The business regularly updates its solution portfolio with.NET-based projects, such as desktop apps, websites, corporate software systems, and add-ons for Microsoft products.</p>
+        </div>
+      </div>
+      <div class="container right">
+        <div class="content">
+          <h2>2007</h2>
+          <p>To respond to market demands, development streams for Java and mobile devices were established in 2008 and 2009, respectively. We finished the first projects employing mobile technologies from Symbian, Windows Mobile, and Pocket PC.
+            As of right present, we have completed more than 50 projects and have good Java and mobile (iOS, Android) experience.
+          </p></div>
+      </div>
+    </div> 
+    </div>
+  
+
+    <!----------Footer----------->
+    <div class="footer">
+        <p>© Copyright 2022 Yiso Solution & System - All Rights Reserved</p>
+    </div>
+
+    <!----------Script----------->
+    <script>
+        function openNav() {
+          document.getElementById("myNav").style.width = "100%";
+        }
+        
+        function closeNav() {
+          document.getElementById("myNav").style.width = "0%";
+        }
+
+        function myFunction() {
+           var element = document.body;
+           var r=document.getElementById
+            element.classList.toggle("dark-mode");
+            r.style.backgroundImage = "../static/img/logo.resized.png";
+        }
+
+        function myFunction(id) {
+            var x = document.getElementById(id);
+                if (x.className.indexOf("w3-show") == -1) {
+                    x.className += " w3-show";
+                    x.previousElementSibling.className = 
+                    x.previousElementSibling.className.replace("w3-black", "w3-red");
+                } else { 
+                    x.className = x.className.replace(" w3-show", "");
+                    x.previousElementSibling.className = 
+                    x.previousElementSibling.className.replace("w3-red", "w3-black");
+                }
+        }
+
+        function change(y) {
+            var y=document.getElementById(y);
+                if(y.className=="fa-solid fa-square-caret-down")
+                {
+                     y.className="fa-solid fa-square-caret-up"
+    
+                }else{
+                    y.className="fa-solid fa-square-caret-down"
+                }
+               
+        }
+        function openCity(evt, cityName) {
+          var i, tabcontent, tablinks;
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablinks");
+          for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+          }
+          document.getElementById(cityName).style.display = "block";
+          evt.currentTarget.className += " active";
+        }
+        </script>
+</body>
+
+</html>

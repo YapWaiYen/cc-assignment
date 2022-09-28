@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Yiso | Home</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<!-- support v4 icon references/syntax -->
+<link href="{{url_for('static', filename='fontawesome-free/css/all.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='fontawesome-free/css/v4-shims.css')}}" rel="stylesheet">
+
+
+<style type="text/css">
+body {
+  background-color: #F2F7FF;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #F2F7FF(255, 255, 255);
+  padding: 10px;
+}
+.topnav ::after{
+  overflow: hidden;
+  background-color: rgb(0, 0, 0);
+  padding: 10px;
+}
+
+.topnav-centered img {
+  float: none;
+  position: absolute;
+  object-fit:contain;
+  top: 7%;
+  left: 50%;
+  width:150px;
+  height:250px;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: darken;
+}
+
+.topnav a:hover {
+  color: rgb(96, 95, 95);
+  border-bottom: 3px solid rgb(21, 0, 255);
+}
+
+.topnav a.active {
+  border-bottom: 3px solid rgb(0, 0, 0);
+}
+
+.topnav-left a{
+  float:left;
+  padding-left: 30px;
+  color: #000000;
+  text-align: center;
+  justify-content: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav-right a {
+  float: right;
+  padding-left: 30px;
+  color: #000000;
+  text-align: center;
+  justify-content: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+}
+
+.footer {
+
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
+
+.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+.card p,h3{
+    text-decoration-style: none;
+    color: black;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 29%;
+  padding: 0 20px;
+  align-items: center;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+  margin: -5px 100px;
+  padding-left:10px ;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.row-col-card{
+  padding: 70px;  
+  margin-top: 60px;
+  height: 100%;
+  background-color: rgb(211, 229, 240);
+  justify-content: center;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+    margin-right: 70px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0px 10px 30px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  border-radius: 12px;
+  margin-bottom: 30px;
+
+}
+
+#report,#add,#edit{
+  font-size: 50px;
+}
+
+</style>
+</head>
+<body>
+  <div class="topnav">
+    <div class="topnav-left">
+      <a href="#home" onclick="openNav()"><i class="fa-solid fa-bars" style="font-size: 25px;"></i></a>
+      <a href="#dark" onclick="myFunction()"><i class="fa-regular fa-moon"></i></a>
+    </div>
+  
+        <div class="topnav-centered">
+          <img src="{{url_for('static', filename = 'img/logo-resized.png')}}">
+        </div>
+
+        <div class="topnav-right">
+          <a href="/payroll" >Payroll</a>
+          <a href="/attendance" >Attendance</a>
+          <a href="/employee" >Employee</a>
+          <a href="/home" class="active">Home</a>
+        </div>
+
+        <div id="myNav" class="overlay">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">
+              <a href="/about">About</a>
+              <a href="/faq">FAQ</a>
+              <a href="/progress">History</a>
+            </div>
+        </div>
+  </div>
+
+      <!----------card----------->
+      <div class="row-col-card" >
+          <div class="row">
+            <div class="column" onClick="location.href='/add'">
+              <div class="card">
+                <i class="fa-solid fa-user-plus" id="add"></i>
+                <h3>Add Employee</h3>
+
+              </div></a>
+            </div>
+            
+            <div class="column" onClick="location.href='/get'">
+              <div class="card">
+                <i class="fa-solid fa-user-pen" id="edit"></i>
+                <h3>Get Employee Details</h3>
+               
+              </div>
+            </div>
+            <div class="column" onClick="location.href='/employee'">
+              <div class="card">
+                <i class="fa-solid fa-clipboard-check" id="report"></i>
+                <h3>View Employee</h3>
+               
+              </div>
+            </div>
+          </div>
+      </div>
+
+     <!----------Footer----------->
+      <div class="footer">
+        <p>© Copyright 2022 Yiso Solution & System - All Rights Reserved</p>
+      </div>
+
+    <!----------Script----------->
+      <script>
+        function openNav() {
+          document.getElementById("myNav").style.width = "100%";
+        }
+        
+        function closeNav() {
+          document.getElementById("myNav").style.width = "0%";
+        }
+        function myFunction() {
+           var element = document.body;
+            element.classList.toggle("dark-mode");
+        }
+        </script>
+</body>
+
+</html>
